@@ -4,7 +4,6 @@ import com.codecrocodile.testdatabasetool.config.SpringConfig;
 import javafx.scene.Node;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.util.Observable;
 import java.util.Stack;
@@ -16,15 +15,13 @@ public class NavigationManager extends Observable {
 
 	public static final Logger log = LogManager.getLogger(NavigationManager.class);
 
-	public static enum UpdateEvent {
+	public enum UpdateEvent {
 		PAGE_CHANGE
 	}
 
-	public static enum HistoryAction {
+	public enum HistoryAction {
 		NONE, 
-		
-		CLEAR_HISTORY, 
-		
+		CLEAR_HISTORY,
 		CLEAR_FORWARD_HISTORY
 	}
 
@@ -35,6 +32,7 @@ public class NavigationManager extends Observable {
 	private Stack<Page> backStack = new Stack<>();
 
 	private Stack<Page> forwardStack = new Stack<>();
+
 
 	public NavigationManager(Start start) {
 		this.start = start;
@@ -59,6 +57,12 @@ public class NavigationManager extends Observable {
 		}
 
 		log.info("request for " + pageName);
+
+		for (String s : ctx.getBeanDefinitionNames()) {
+
+			System.out.println(s);
+		}
+
 
 		Page pageToDisplay = ctx.getBean(pageName, Page.class);
 		pageToDisplay.setNavigationManager(this);

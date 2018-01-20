@@ -58,7 +58,7 @@ public class Start extends Application {
         scene.getStylesheets().add("/application-stylesheet.css");
         primaryStage.setScene(scene);
 
-        navigationManager.requestPageChange("HomePage", NavigationManager.HistoryAction.NONE, false);
+        navigationManager.requestPageChange("homePage", NavigationManager.HistoryAction.NONE, false);
 
         primaryStage.show();
     }

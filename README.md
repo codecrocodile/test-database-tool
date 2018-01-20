@@ -1,5 +1,5 @@
-# test-database-tool
-Tool to manage set-up of a database, schema, and data. This is in current development (20180119)
+# test-databaseName-tool
+Tool to manage set-up of a databaseName, schema, and data. This is in current development (20180119)
 
 
 CURRENTLY UNDER DEVELOPMENT

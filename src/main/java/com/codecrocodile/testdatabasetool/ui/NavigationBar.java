@@ -67,8 +67,8 @@ public class NavigationBar implements Observer {
 		
 		MenuBar menuBar = new MenuBar();
 		
-		Menu salesMenu = buildSalesMenu();
-		menuBar.getMenus().addAll(salesMenu);
+		Menu fileMenu = buildFileMenu();
+		menuBar.getMenus().addAll(fileMenu);
 
 		Node navigationBar = this.createNavigationBar();
 		
@@ -117,7 +117,7 @@ public class NavigationBar implements Observer {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				navigationManager.requestPageChange("HomePage", HistoryAction.CLEAR_HISTORY, true);
+				navigationManager.requestPageChange("homePage", HistoryAction.CLEAR_HISTORY, true);
 			}
 		});
 		homeBtn.setCursor(Cursor.HAND);
@@ -131,14 +131,14 @@ public class NavigationBar implements Observer {
 		return toolbar;
 	}
 	
-	private Menu buildSalesMenu() {
+	private Menu buildFileMenu() {
 		MenuItem homeMenuItem = new MenuItem("Home");
 		homeMenuItem.setOnAction(e -> {
-			navigationManager.requestPageChange("Home", HistoryAction.CLEAR_HISTORY, true);
+			navigationManager.requestPageChange("homePage", HistoryAction.CLEAR_HISTORY, true);
 		});
 		MenuItem settingsMenuItem = new MenuItem("Settings");
 		settingsMenuItem.setOnAction(e -> {
-			navigationManager.requestPageChange("Settings", HistoryAction.CLEAR_HISTORY, true);
+			navigationManager.requestPageChange("settingsPage", HistoryAction.CLEAR_HISTORY, true);
 		});
 
 		Menu fileMenu = MenuBuilder.create().text("File").items(homeMenuItem, settingsMenuItem).build();
@@ -146,67 +146,6 @@ public class NavigationBar implements Observer {
 		return fileMenu;
 	}
 	
-	private Menu buildSiteManagementMenu() {
-		MenuItem newsFeedMenuItem = new MenuItem("News Feed");
-		newsFeedMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-		    public void handle(ActionEvent event) {
-		    	navigationManager.requestPageChange("NewsFeedPage", HistoryAction.CLEAR_HISTORY, true);
-		    }
-		});
-		MenuItem pageManagementMenuItem = new MenuItem("Page Management");
-		pageManagementMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-		    public void handle(ActionEvent event) {
-		    	navigationManager.requestPageChange("WebPageManagementPage", HistoryAction.CLEAR_HISTORY, true);
-		    }
-		});
-
-
-		MenuItem productsMenuItem = new MenuItem("Products");
-		productsMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-		    public void handle(ActionEvent event) {
-		    	navigationManager.requestPageChange("ProductsPage", HistoryAction.CLEAR_HISTORY, true);
-		    }
-		});
-		Menu productManagementMenu = MenuBuilder.create().text("Product Management").items(productsMenuItem).build();
-
-
-		MenuItem blobStoreViewerMenuItem = new MenuItem("Blob Store Viewer");
-		blobStoreViewerMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-		    public void handle(ActionEvent event) {
-		    	navigationManager.requestPageChange("BlobstoreViewerPage", HistoryAction.CLEAR_HISTORY, true);
-		    }
-		});
-		MenuItem capabilityCheckMenuItem = new MenuItem("Capability Check");
-		capabilityCheckMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-		    public void handle(ActionEvent event) {
-		    	navigationManager.requestPageChange("CapabilityCheckPage", HistoryAction.CLEAR_HISTORY, true);
-		    }
-		});
-		Menu googleAppEngineMenu = MenuBuilder.create().text("Google App Engine").items(blobStoreViewerMenuItem, capabilityCheckMenuItem).build();
-
-		Menu siteManagementMenu = MenuBuilder.create().text("Site Management").items(newsFeedMenuItem, pageManagementMenuItem, productManagementMenu, googleAppEngineMenu).build();
-
-		return siteManagementMenu;
-	}
-
-	private Menu buildReportsMenu() {
-		MenuItem monthlySalesMenuItem = new MenuItem("Monthly Sales Report");
-		monthlySalesMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-		    public void handle(ActionEvent event) {
-		    	navigationManager.requestPageChange("SalesReportMonthly", HistoryAction.CLEAR_HISTORY, true);
-		    }
-		});
-		Menu reportsMenu = MenuBuilder.create().text("Reports").items(monthlySalesMenuItem).build();
-
-		return reportsMenu;
-	}
-
 	/*
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
